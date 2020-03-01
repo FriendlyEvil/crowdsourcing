@@ -1,0 +1,47 @@
+{
+  "public_name": "Выделите все дорожные знаки на картинке",
+  "public_description": "Найдите и обведите прямоугольником все дорожные знаки на картинке",
+  "public_instructions": "<img alt=\"\" src=\"https://ibb.co/DzpZgy4\" />Обведите прямоугольником все дорожные знаки на картинке. Например, на этой картинке 4 знака:<div></div><div><img src=\"https://downloader.disk.yandex.ru/preview/d40cc221db34fec9aa582a79508568676eaa70dab16c1ebcabb447657ec195d3/5e45f83a/IR5M_6JP8jQRQAmpiZEo34Nud4SZEzr7iGR91tMBqJl8ALwNeSV9ynZr2JSt4cZgZEuGqWkP7f8yEWun9ZMEBg&#61;&#61;?uid&#61;0&amp;filename&#61;image_2020-02-14_00-28-13.png&amp;disposition&#61;inline&amp;hash&#61;&amp;limit&#61;0&amp;content_type&#61;image%2Fpng&amp;tknv&#61;v2&amp;owner_uid&#61;979357217&amp;size&#61;2048x2048\" /><br /></div>",
+  "task_spec": {
+    "input_spec": {
+      "image": {
+        "type": "url",
+        "hidden": false,
+        "required": true
+      }
+    },
+    "output_spec": {
+      "result": {
+        "type": "json",
+        "hidden": false,
+        "required": true
+      }
+    },
+    "view_spec": {
+      "type": "classic",
+      "assets": {
+        "style_urls": [],
+        "script_urls": [
+          "$TOLOKA_ASSETS/js/toloka-handlebars-templates.js",
+          "$TOLOKA_ASSETS/js/image-annotation.js"
+        ]
+      },
+      "markup": "{{field type=\"image-annotation\" name=\"result\" src=image}}",
+      "script": "exports.Task = extend(TolokaHandlebarsTask, function (options) {\n  TolokaHandlebarsTask.call(this, options);\n}, {\n  onRender: function() {\n    // DOM-элемент задания сформирован (доступен через #getDOMElement()) \n  },\n  onDestroy: function() {\n    // Задание завершено, можно освобождать (если были использованы) глобальные ресурсы\n  }\n});\n\nfunction extend(ParentClass, constructorFunction, prototypeHash) {\n  constructorFunction = constructorFunction || function () {};\n  prototypeHash = prototypeHash || {};\n  if (ParentClass) {\n    constructorFunction.prototype = Object.create(ParentClass.prototype);\n  }\n  for (var i in prototypeHash) {\n    constructorFunction.prototype[i] = prototypeHash[i];\n  }\n  return constructorFunction;\n}\n",
+      "styles": "/* disable rectangle-editor controls */\n.image-annotation-editor__shape-polygon {\n  display: none;\n}\n.image-annotation-editor__annotation-layer {\n\theight: max-content;\n}\n",
+      "settings": {
+        "showSkip": true,
+        "showTimer": true,
+        "showTitle": true,
+        "showFinish": true,
+        "showReward": true,
+        "showSubmit": true,
+        "showMessage": true,
+        "showFullscreen": true,
+        "showInstructions": true
+      }
+    }
+  },
+  "assignments_issuing_type": "AUTOMATED",
+  "assignments_automerge_enabled": false
+}
