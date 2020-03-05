@@ -93,7 +93,6 @@ def create_pool(data):
 
 def aggregate(pool_id):
     a = json.dumps({"type": "DAWID_SKENE"})
-    # api это пиздец
     request = requests.post(f"https://toloka.yandex.ru/api/new/aggregator/pools/{pool_id}/aggregate", data=a, headers=HEADER, verify=False)
     return request.json()
 
